@@ -10,19 +10,22 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   int analogValue;
-  float temperature;
+  float tempC;
+  float tempF;
 
   // read the temperature sensor
   analogValue = analogRead(lm35Pin);
 
   // convert 10 bit analog value to celcius
-  temperature = float(analogValue) / 1023;
-  temperature = temperature * 500;
+  tempC = float(analogValue) / 1023;
+  tempC *= 500;
+  
+  tempF = tempC * 1.8 + 32;
 
   // print the temperature over serial
   Serial.print("Temp: ");
-  Serial.print(temperature);
-  Serial.print("C");
+  Serial.print(tempF);
+  Serial.print("F");
   Serial.print("\n");
 
   // wait 1sec before reading the temp again
